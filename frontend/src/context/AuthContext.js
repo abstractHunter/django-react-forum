@@ -43,7 +43,7 @@ export const AuthProvider = ({children}) => {
         setAuthTokens(null)
         setUser(null)
         localStorage.removeItem('authTokens')
-        navigate("/signin")
+        navigate("/")
     }
 
 

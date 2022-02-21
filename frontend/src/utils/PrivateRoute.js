@@ -3,11 +3,16 @@ import { useContext } from 'react'
 import AuthContext from '../context/AuthContext'
 
 // restrict a route to user if a condition is not met
-const PrivateRoute = () => {
-    let {user} = useContext(AuthContext)
 
-    return user ? <Outlet /> : <Navigate to="/signin" />
-    
+
+const PrivateRoute = (props) => {
+    const shouldLogIn = props.shouldLogIn
+    const redirectTo = props.redirectTo
+
+    let {user} = useContext(AuthContext)
+    let condition = shouldLogIn ? user : !user
+
+    return condition ? <Outlet /> : <Navigate to={redirectTo} />
 }
 
 export default PrivateRoute;

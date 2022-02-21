@@ -20,11 +20,16 @@ function App() {
 					<Header />
 				
 					<Routes>
-						<Route element={<PrivateRoute />} >
-							<Route path="/" element={<HomePage />} />
+						<Route path="/" element={<HomePage />} />
+						{/* <Route path="signin" element={<SignInPage />} />
+						<Route path="signup" element={<SignUpPage />} /> */}
+						
+						{/* if the user is logged in do not allow them to go to signin or signup pages */}
+						<Route element={<PrivateRoute shouldLogIn={false} redirectTo="/" />} >
+							<Route path="signin" element={<SignInPage />} />
+							<Route path="signup" element={<SignUpPage />} />
 						</Route>
-						<Route path="signin" element={<SignInPage />} />
-						<Route path="signup" element={<SignUpPage />} />
+
 					</Routes>
 
 				</AuthProvider>

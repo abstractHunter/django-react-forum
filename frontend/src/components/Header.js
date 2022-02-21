@@ -14,24 +14,28 @@ import {
     Button,
     Tooltip,
     MenuItem
-} from '@mui/material/AppBar';
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
 
 const navlinks = [
     {
+        name: "Home",
+        link: "/",
+        shouldBeConnected: true,
+    },
+    {
         name: "Log In",
         link: "signin",
+        shouldBeConnected: false,
     },
     {
         name: "Log Up",
         link: "signup",
-    },
-    {
-        name: "Home",
-        link: "/",
+        shouldBeConnected: false,
     },
 ]
+
 const settings = [
     {
         id: 1,
@@ -117,7 +121,7 @@ const Header = () => {
                             }}
                         >
                             { user ? (
-                                    navlinks.slice(2).map((navlink, key) => (
+                                    navlinks.filter(nav => nav.shouldBeConnected === true).map((navlink, key) => (
                                         <MenuItem key={key} onClick={handleCloseNavMenu}>
                                             <Typography textAlign="center">
                                                 <Link to={navlink.link} >{navlink.name}</Link>
@@ -125,7 +129,7 @@ const Header = () => {
                                         </MenuItem>
                                     ))
                                 ) : (
-                                    navlinks.slice(0, 2).map((navlink, key) => (
+                                    navlinks.slice(0, 3).map((navlink, key) => (
                                         <MenuItem key={key} onClick={handleCloseNavMenu}>
                                             <Typography textAlign="center">
                                                 <Link to={navlink.link} >{navlink.name}</Link>
@@ -150,7 +154,7 @@ const Header = () => {
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 
                         { user ? (
-                            navlinks.slice(2).map((navlink, key) => (
+                            navlinks.filter(nav => nav.shouldBeConnected === true).map((navlink, key) => (
                                 <Button
                                     key={key}
                                     onClick={handleCloseNavMenu}
@@ -160,7 +164,7 @@ const Header = () => {
                                 </Button>
                             ))
                         ) : (
-                            navlinks.slice(0, 2).map((navlink, key) => (
+                            navlinks.slice(0, 3).map((navlink, key) => (
                                 <Button
                                     key={key}
                                     onClick={handleCloseNavMenu}
