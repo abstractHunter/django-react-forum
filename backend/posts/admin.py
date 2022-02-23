@@ -1,6 +1,21 @@
 from django.contrib import admin
-from .models import Post
+from posts.models import Post, Topic
 
 # Register your models here.
 
-admin.site.register(Post)
+
+class PostAdmin(admin.ModelAdmin):
+    list_display = ("title", "author")
+
+
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ("author", "content")
+
+
+class TopicAdmin(admin.ModelAdmin):
+    list_display = ("title", "author")
+
+admin.site.register(Post, PostAdmin)
+admin.site.register(Topic, TopicAdmin)
+#admin.site.register(Comment, CommentAdmin)
+
