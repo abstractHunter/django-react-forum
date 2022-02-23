@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from 'react'
+import PostCard from '../components/PostCard'
 
 function HomePage() {
 	const [posts, setPosts] = useState([])
 
 	const getPosts = () => {
-		fetch('http://127.0.0.1:8000/api/post/all')
+		fetch('http://127.0.0.1:8000/api/post/')
 			.then((res) => res.json())
 			.then((res) => {
-				console.log(res)
+				console.log(res);
 				setPosts(res)
 		})
 	}
@@ -18,19 +19,17 @@ function HomePage() {
 
 	return (
 		<>
-			<h2>HomePage</h2>
-
-			<h3>List of posts</h3>
-
-			<ul>
-				{posts.map((item, i) => {
-					return ( 
-						<li key={i}>
-							<h4>{item.title}</h4>
-						</li>
-					)
-				})}
-			</ul>
+			{posts.map((item, i) => {
+				return ( 
+					<PostCard 
+						key={i}
+						title={item.title}
+						content={item.content}
+						author={item.author}
+						date={item.created_at}
+					/>
+				)
+			})}
 		</>
 
 	)
