@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 import jwt_decode from "jwt-decode";
+import Loader from "../components/Loader";
 
 const AuthContext = createContext()
 export default AuthContext
@@ -129,7 +130,7 @@ export const AuthProvider = ({children}) => {
 
     return (
         <AuthContext.Provider value={contextData} >
-            {loading ? <p>loding, trying to connect to server ....</p> : children}
+            {loading ? <Loader /> : children}
         </AuthContext.Provider>
     )
 }
