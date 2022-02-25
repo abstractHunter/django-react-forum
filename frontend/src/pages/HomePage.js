@@ -23,6 +23,7 @@ function HomePage() {
 				return ( 
 					<PostCard 
 						key={i}
+						postId={item.id}
 						title={item.title}
 						content={item.content}
 						author={item.author}

@@ -1,30 +1,35 @@
 import React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import {
+    Button,
+    Typography,
+    CardContent,
+    Card
+} from '@mui/material';
 
 function PostCard(props) {
     const title = props.title
-    //const author = props.author
+    const author = props.author
     const content = props.content
+    const postId = props.postId
     //const date = props.created
 
     return (
-        <Card sx={{ maxWidth: 800 }}>
-            <CardActionArea>
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                        {title}
-                    </Typography>
-                    {/* <Typography gutterBottom variant="h6" component="div">
-                        {author}
-                    </Typography> */}
-                    <Typography variant="body1" color="text.secondary">
-                        {content}
-                    </Typography>
-                </CardContent>
-            </CardActionArea>
+        <Card sx={{ maxwidth: "md" }}>
+            <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                    {"[ " + author + " ]  - " + title}
+                </Typography>
+                <Typography variant="body1" color="text.secondary">
+                    {content}
+                </Typography>
+                <Button 
+                    variant="contained"
+                    disableElevation
+                    href={"/post/" + postId}
+                >
+                    More 
+                </Button>
+            </CardContent>
         </Card>
     )
 }
